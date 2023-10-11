@@ -1,7 +1,16 @@
+import { AppRoutes } from "./AppRoutes";
+import Header from "./components/Header/Header";
+import CreateTaskModal from "./components/createTaskModal/createTaskModal";
+import DeleteTaskModal from "./components/deleteTaskModal/DeleteTaskModal";
+
 function App() {
+
   return (
     <>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+      <Header />
+      <AppRoutes />
+      <CreateTaskModal />
+      <DeleteTaskModal />
     </>
   );
 }
