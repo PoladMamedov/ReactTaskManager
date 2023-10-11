@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import { useDispatch } from "react-redux";
 import { toggleTaskReadiness } from "../../redux/slices/tasksSlice";
 import { openDeleteTaskModal } from "../../redux/slices/deleteTaskModalSlice";
+import { openEditingTaskModal } from "../../redux/slices/createEditTaskModalSlice";
 
 function TaskItem({ taskObj: { task, taskDescription, finished, id } }) {
   const dispatch = useDispatch();
@@ -44,7 +45,14 @@ function TaskItem({ taskObj: { task, taskDescription, finished, id } }) {
             Mark as done &#10004;
           </Button>
         )}
-        <Button variant="primary">Edit</Button>
+        <Button
+          onClick={() => {
+            dispatch(openEditingTaskModal(id));
+          }}
+          variant="primary"
+        >
+          Edit
+        </Button>
         <Button
           onClick={() => {
             dispatch(openDeleteTaskModal(id));

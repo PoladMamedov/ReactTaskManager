@@ -1,6 +1,6 @@
 import { AppRoutes } from "./AppRoutes";
 import Header from "./components/Header/Header";
-import CreateTaskModal from "./components/createTaskModal/createTaskModal";
+import CreateEditTaskModal from "./components/createEditTaskModal/CreateEditTaskModal";
 import DeleteTaskModal from "./components/deleteTaskModal/DeleteTaskModal";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
       <AppRoutes />
-      <CreateTaskModal />
+      <CreateEditTaskModal />
       <DeleteTaskModal />
     </>
   );

@@ -1,16 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
-import { closeCreateTaskModal } from "../../redux/slices/createTaskModalSlice";
+import { closeCreateEditTaskModal } from "../../redux/slices/createEditTaskModalSlice";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import * as formik from "formik";
 import * as yup from "yup";
-import { addTask } from "../../redux/slices/tasksSlice";
+import { addTask, editTask } from "../../redux/slices/tasksSlice";
 
-function CreateTaskModal() {
+function CreateEditTaskModal() {
   const dispatch = useDispatch();
-  const createTaskModalOpened = useSelector((state) => state.createTaskModal.open);
-  const handleClose = () => dispatch(closeCreateTaskModal());
+  const createTaskModalOpened = useSelector((state) => state.createEditTaskModal.open);
+  const isEditing = useSelector((state) => state.createEditTaskModal.isEditing);
+  const editedTaskId = useSelector((state) => state.createEditTaskModal.editedTaskId);
+  const taskInfo = useSelector((state) => state.tasks.find((task) => task.id === editedTaskId));
+  const handleClose = () => dispatch(closeCreateEditTaskModal());
 
   const { Formik } = formik;
 
@@ -30,14 +33,26 @@ function CreateTaskModal() {
           <Formik
             validationSchema={schema}
             onSubmit={(values) => {
-              dispatch(addTask(values));
+              if (isEditing) {
+                dispatch(editTask({ ...values, id: taskInfo.id }));
+              } else {
+                dispatch(addTask(values));
+              }
               handleClose();
             }}
-            initialValues={{
-              task: "",
-              taskDescription: "",
-              finished: false,
-            }}
+            initialValues={
+              isEditing
+                ? {
+                    task: taskInfo.task,
+                    taskDescription: taskInfo.taskDescription,
+                    finished: taskInfo.finished,
+                  }
+                : {
+                    task: "",
+                    taskDescription: "",
+                    finished: false,
+                  }
+            }
           >
             {({ handleSubmit, handleChange, values, touched, errors }) => (
               <Form onSubmit={handleSubmit}>
@@ -82,4 +97,4 @@ function CreateTaskModal() {
   );
 }
 
-export default CreateTaskModal;
+export default CreateEditTaskModal;

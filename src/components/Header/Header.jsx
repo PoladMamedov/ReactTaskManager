@@ -5,7 +5,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 import { LinkContainer } from "react-router-bootstrap";
 import { useDispatch } from "react-redux";
-import { openCreateTaskModal } from "../../redux/slices/createTaskModalSlice";
+import { openCreateTaskModal } from "../../redux/slices/createEditTaskModalSlice";
 
 function Header() {
   const dispatch = useDispatch();

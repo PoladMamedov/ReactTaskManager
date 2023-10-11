@@ -1,7 +1,7 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import createTaskModalReducer from "./slices/createTaskModalSlice";
+import createEditTaskModalReducer from "./slices/createEditTaskModalSlice";
 import deleteTaskModalReducer from "./slices/deleteTaskModalSlice";
 import tasksReducer from "./slices/tasksSlice";
 
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   //   items: itemsReducer,
   //   favItems: favItemsReducer,
   //   cartItems: cartItemsReducer,
-  createTaskModal: createTaskModalReducer,
+  createEditTaskModal: createEditTaskModalReducer,
   deleteTaskModal: deleteTaskModalReducer,
   tasks: tasksReducer,
   //   selectedItem: selectedItemReducer,
