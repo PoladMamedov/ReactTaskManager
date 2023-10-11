@@ -12,7 +12,7 @@ function CreateEditTaskModal() {
   const { open, isEditing, editedTaskId } = useSelector((state) => state.createEditTaskModal);
   const taskInfo = useSelector((state) => state.tasks.find((task) => task.id === editedTaskId));
   const handleClose = () => dispatch(closeCreateEditTaskModal());
-
+  
   const { Formik } = formik;
 
   const schema = yup.object().shape({
