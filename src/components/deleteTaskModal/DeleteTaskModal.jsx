@@ -6,12 +6,11 @@ import { deleteTask } from "../../redux/slices/tasksSlice";
 
 function DeleteTaskModal() {
   const dispatch = useDispatch();
-  const deleteTaskModalOpened = useSelector((state) => state.deleteTaskModal.open);
-  const deletingTaskId = useSelector((state) => state.deleteTaskModal.deletingId);
+  const { open, deletingId } = useSelector((state) => state.deleteTaskModal);
   const handleClose = () => dispatch(closeDeleteTaskModal());
 
   return (
-    <Modal centered show={deleteTaskModalOpened} onHide={handleClose}>
+    <Modal centered show={open} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Are you sure?</Modal.Title>
       </Modal.Header>
@@ -22,7 +21,7 @@ function DeleteTaskModal() {
         </Button>
         <Button
           onClick={() => {
-            dispatch(deleteTask(deletingTaskId));
+            dispatch(deleteTask(deletingId));
             handleClose();
           }}
           variant="danger"

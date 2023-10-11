@@ -8,17 +8,13 @@ import tasksReducer from "./slices/tasksSlice";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: ["createTaskModal", "deleteTaskModal"],
+  blacklist: ["createEditTaskModal", "deleteTaskModal"],
 };
 
 const rootReducer = combineReducers({
-  //   items: itemsReducer,
-  //   favItems: favItemsReducer,
-  //   cartItems: cartItemsReducer,
   createEditTaskModal: createEditTaskModalReducer,
   deleteTaskModal: deleteTaskModalReducer,
   tasks: tasksReducer,
-  //   selectedItem: selectedItemReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

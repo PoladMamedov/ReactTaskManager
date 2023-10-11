@@ -9,9 +9,7 @@ import { addTask, editTask } from "../../redux/slices/tasksSlice";
 
 function CreateEditTaskModal() {
   const dispatch = useDispatch();
-  const createTaskModalOpened = useSelector((state) => state.createEditTaskModal.open);
-  const isEditing = useSelector((state) => state.createEditTaskModal.isEditing);
-  const editedTaskId = useSelector((state) => state.createEditTaskModal.editedTaskId);
+  const { open, isEditing, editedTaskId } = useSelector((state) => state.createEditTaskModal);
   const taskInfo = useSelector((state) => state.tasks.find((task) => task.id === editedTaskId));
   const handleClose = () => dispatch(closeCreateEditTaskModal());
 
@@ -25,7 +23,7 @@ function CreateEditTaskModal() {
 
   return (
     <>
-      <Modal centered show={createTaskModalOpened} onHide={handleClose}>
+      <Modal centered show={open} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Task info:</Modal.Title>
         </Modal.Header>
